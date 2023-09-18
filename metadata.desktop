@@ -1,0 +1,13 @@
+[SddmGreeterTheme]
+Name=sddm-haxor
+Description=A simple SDDM theme for the cli-based haxor chads
+Author=Miska Tammenpää
+Copyright=(c) 2023, Miska Tammenpää
+License=GNU General Public License v3.0
+Type=sddm-theme
+Version=0.1
+Website=https://github.com/SirLarion/sddm-haxor
+MainScript=Main.qml
+Email=miska@tammenpaa.com
+Theme-Id=sddmHaxor
+Theme-API=2.0
