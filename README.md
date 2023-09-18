@@ -8,5 +8,5 @@ run `scripts/build && scripts/deploy`
 
 ### Credit 
 This uses GistOfSpirit's
-(TerminalStyleLogin)[https://github.com/GistOfSpirit/TerminalStyleLogin] as a
+[TerminalStyleLogin](https://github.com/GistOfSpirit/TerminalStyleLogin) as a
 base but modifies it quite heavily.
