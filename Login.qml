@@ -28,7 +28,7 @@ Rectangle {
 
     TermLabel {
       id: usernameLabel
-      text: ""
+      text: "> "
     }
 
 		TermInput {
@@ -36,7 +36,7 @@ Rectangle {
 
 			focus: true
 
-			text: "> "
+			text: ""
 
 			onAccepted: {
 				loginForm.setState("password")
@@ -64,10 +64,10 @@ Rectangle {
 
 			echoMode: TextInput.Password
 			text: ""
+      passwordCharacter: "*"
 
 			onAccepted: {
-				passwordInput.readOnly = true
-				credentialsEntered(usernameInput.text, passwordInput.text)
+        loginForm.setState("authenticating")
 			}
 		}
 	}
@@ -93,26 +93,41 @@ Rectangle {
 	}
 
 	function setState(state) {
-		// Using QML states prevented me from affecting only certain objects
 		switch (state) {
 			case "loginFailed":
-			loginFailedLabel.visible = true
-			//fallthrough
+        loginFailedLabel.visible = true
+        //fallthrough
 
 			case "username":
-			loginForm.visible = true
-			passwordRow.visible = false
-			usernameInput.readOnly = false
-			usernameInput.text = ""
-			break
+        loginForm.visible = true
+        usernameLabel.opacity = 1
+        passwordLabel.opacity = 0
+        passwordRow.visible = false
+        usernameInput.readOnly = false
+        usernameInput.text = ""
+        break
 
 			case "password":
-			loginForm.visible = true
-			passwordRow.visible = true
-			usernameInput.readOnly = true
-			passwordInput.readOnly = false
-			passwordInput.text = ""
-			break
+        loginForm.visible = true
+        passwordRow.visible = true
+        usernameLabel.opacity = 0
+        passwordLabel.opacity = 1
+        usernameInput.readOnly = true
+        passwordInput.readOnly = false
+        passwordInput.text = ""
+        passwordInput.forceActiveFocus()
+        break
+
+      case "authenticating":
+        loginForm.forceActiveFocus()
+        usernameLabel.opacity = 0
+        passwordLabel.opacity = 0
+				passwordInput.readOnly = true
+				credentialsEntered(usernameInput.text, passwordInput.text)
+        break
+
+      default:
+        break
 		}
 	}
 

@@ -1,0 +1,9 @@
+#!/bin/bash
+theme_name="sddm-haxor"
+install_dir=/usr/share/sddm/themes/$theme_name
+
+script_loc=$(readlink -f "$0")
+script_dir=$(dirname "$script_loc")
+
+sudo rm -r $install_dir
+sudo cp -r $script_dir/../build $install_dir
